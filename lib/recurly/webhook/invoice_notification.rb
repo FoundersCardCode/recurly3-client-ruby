@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   module Webhook
     # The InvoiceNotification class provides a generic interface
     # for account-related webhook notifications.

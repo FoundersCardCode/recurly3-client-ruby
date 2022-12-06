@@ -10,7 +10,7 @@ describe Webhook::Notification do
         self
       end
     end
-    Recurly.const_set :MockAccount, klass
+    Recurly2.const_set :MockAccount, klass
   
     Class.new Webhook::Notification do
       has_one :mock_account

@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   class Subscription < Resource
     require 'recurly/subscription/add_ons'
 
@@ -118,7 +118,7 @@ module Recurly
 
     # @return [Subscription] A new subscription.
     def initialize(attributes = {})
-      super({ :currency => Recurly.default_currency }.merge attributes)
+      super({ :currency => Recurly2.default_currency }.merge attributes)
     end
 
     # Assign a Plan resource (rather than a plan code).
@@ -188,7 +188,7 @@ module Recurly
     # Convert free trial to paid subscription. Optionally uses a 3ds token.
     # 
     # @param three_d_secure_action_result_token_id [String] three_d_secure_action_result_token_id 
-    #   returned by Recurly.js referencing the result of the 3DS authentication for PSD2
+    #   returned by Recurly2.js referencing the result of the 3DS authentication for PSD2
     # @return true when payment is accepted
     def convert_trial(three_d_secure_action_result_token_id = nil)
       body = if three_d_secure_action_result_token_id != nil

@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   module Webhook
     # The Notification class provides a generic interface
     # for account-related webhook notifications.

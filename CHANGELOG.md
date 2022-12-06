@@ -156,12 +156,12 @@ This brings us up to API version 2.15. There are no breaking changes.
 <a name="v2.17.0"></a>
 ## v2.17.0 (2018-09-20)
 
-- Remove Recurly.js v2 code and some other small improvements [PR](https://github.com/recurly/recurly-client-ruby/pull/411)
+- Remove Recurly2.js v2 code and some other small improvements [PR](https://github.com/recurly/recurly-client-ruby/pull/411)
 - Adds missing credit memo opts to invoice refunds [PR](https://github.com/recurly/recurly-client-ruby/pull/415)
 
 ### Upgrade Notes
 
-This release contains one breaking change. Older Recurly.js token signing is no longer supported. You should upgrade to version 4 of Recurly.js: https://dev.recurly.com/docs/recurlyjs
+This release contains one breaking change. Older Recurly2.js token signing is no longer supported. You should upgrade to version 4 of Recurly2.js: https://dev.recurly.com/docs/recurlyjs
 The `js` module is still around to support storing the `public_key`.
 
 <a name="v2.16.2"></a>
@@ -742,7 +742,7 @@ This release has API breaking changes around coupon redemptions. See [PR](https:
 <a name="v2.3.7"></a>
 ## v2.3.7 (2014-12-8)
 
-* Add 'public_key' property to Recurly.js [1ad6aa0](https://github.com/recurly/recurly-client-ruby/pull/155)
+* Add 'public_key' property to Recurly2.js [1ad6aa0](https://github.com/recurly/recurly-client-ruby/pull/155)
 * Adds support for reading and writing custom invoice notes [PR](https://github.com/recurly/recurly-client-ruby/pull/158)
 * Add `Plan#tax_code`, `AddOn#tax_code` and `Adjustment#tax_code` [PR](https://github.com/recurly/recurly-client-ruby/pull/160)
 

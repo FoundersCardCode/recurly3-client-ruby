@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   # The Webhook class handles delegating the webhook request body to the appropriate
   # notification class. Notification classes enapsualte the supplied data, providing
   # access to account details, as well as subscription, invoice, and transaction

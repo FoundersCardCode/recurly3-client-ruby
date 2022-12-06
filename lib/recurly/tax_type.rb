@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   class TaxType < Resource
     define_attribute_methods %w(
       description

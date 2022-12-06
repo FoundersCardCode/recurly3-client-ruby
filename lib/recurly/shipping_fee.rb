@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   class ShippingFee < Resource
     # @return [ShippingAddress, nil]
     has_one :shipping_address, class_name: :ShippingAddress, readonly: false

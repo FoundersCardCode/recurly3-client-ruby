@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   # Invoices are created through account objects.
   #
   # Recurly Documentation: https://dev.recurly.com/docs/list-invoices
@@ -246,7 +246,7 @@ module Recurly
     private
 
     def initialize(attributes = {})
-      super({ :currency => Recurly.default_currency }.merge attributes)
+      super({ :currency => Recurly2.default_currency }.merge attributes)
     end
 
     def refund_amount_to_xml(amount_in_cents = nil, refund_method = nil, options = {})

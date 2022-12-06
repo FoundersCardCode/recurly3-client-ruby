@@ -1,5 +1,5 @@
-module Recurly
-  # Accounts are core to managing your customers inside of Recurly.
+module Recurly2
+  # Accounts are core to managing your customers inside of Recurly2.
   # The account object stores the entire Recurly history of your customer and acts as the entry point
   # for working with a customer's billing information, subscription data, transactions, invoices and more.
   #

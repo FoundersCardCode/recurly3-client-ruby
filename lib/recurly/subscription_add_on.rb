@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   class SubscriptionAddOn < Resource
     # @return [MeasuredUnit]
     has_one :measured_unit

@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   # Recurly Documentation: https://dev.recurly.com/docs/create-account-acquisition
   class AccountAcquisition < Resource
     # @return [Account]

@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   class AddOn < Resource
     # @return [Plan]
     belongs_to :plan

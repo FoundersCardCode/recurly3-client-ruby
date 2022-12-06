@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   class JurisDetail < Resource
     define_attribute_methods %w(
       description

@@ -1,7 +1,7 @@
 require 'cgi'
 require 'net/https'
 
-module Recurly
+module Recurly2
   class API
     module Net
       module HTTPAdapter
@@ -45,7 +45,7 @@ module Recurly
           end
           self.validate_uri!(uri)
           request = METHODS[method].new uri.request_uri, head
-          request.basic_auth(*[Recurly.api_key, nil].flatten[0, 2])
+          request.basic_auth(*[Recurly2.api_key, nil].flatten[0, 2])
           if options[:body]
             request['Content-Type'] = content_type
             request.body = options[:body]
@@ -63,13 +63,13 @@ module Recurly
           http.use_ssl = uri.scheme == 'https'
           net_http.each_pair { |key, value| http.send "#{key}=", value }
 
-          if Recurly.logger
-            Recurly.log :info, "===> %s %s" % [request.method, uri]
+          if Recurly2.logger
+            Recurly2.log :info, "===> %s %s" % [request.method, uri]
             headers = request.to_hash
             headers['authorization'] &&= ['Basic [FILTERED]']
-            Recurly.log :debug, headers.inspect
+            Recurly2.log :debug, headers.inspect
             if request.body && !request.body.empty?
-              Recurly.log :debug, XML.filter(request.body)
+              Recurly2.log :debug, XML.filter(request.body)
             end
             start_time = Time.now
           end
@@ -77,7 +77,7 @@ module Recurly
           response = http.start { http.request request }
           code = response.code.to_i
 
-          if Recurly.logger
+          if Recurly2.logger
             latency = (Time.now - start_time) * 1_000
             level = case code
               when 200...300 then :info
@@ -85,15 +85,15 @@ module Recurly
               when 400...500 then :error
               else                :fatal
             end
-            Recurly.log level, "<=== %d %s (%.1fms)" % [
+            Recurly2.log level, "<=== %d %s (%.1fms)" % [
               code,
               response.class.name[9, response.class.name.length].gsub(
                 /([a-z])([A-Z])/, '\1 \2'
               ),
               latency
             ]
-            Recurly.log :debug, response.to_hash.inspect
-            Recurly.log :debug, response.body if response.body
+            Recurly2.log :debug, response.to_hash.inspect
+            Recurly2.log :debug, response.body if response.body
           end
 
           case code

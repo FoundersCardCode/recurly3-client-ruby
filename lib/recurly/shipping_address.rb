@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   # Recurly Documentation: https://dev.recurly.com/docs/list-accounts-shipping-address
   class ShippingAddress < Resource
     define_attribute_methods %w(

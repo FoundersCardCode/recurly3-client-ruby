@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   # The Purchase object works in a slightly different way than the rest of the models.
   # You build up the purchase data into an object then pass to either:
   # {Purchase.invoice!} or {Purchase.preview!} and it will

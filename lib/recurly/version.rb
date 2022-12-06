@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   module Version
     VERSION = "2.18.8"
 

@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   class Address < Resource
     define_attribute_methods %w(
       first_name

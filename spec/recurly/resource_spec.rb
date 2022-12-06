@@ -221,12 +221,12 @@ XML
 
     describe ".has_many" do
       before do
-        Recurly.const_set :Reason, Class.new(Resource)
+        Recurly2.const_set :Reason, Class.new(Resource)
         resource.has_many :reasons
       end
 
       after do
-        Recurly.send :remove_const, :Reason
+        Recurly2.send :remove_const, :Reason
       end
 
       it "must define an association" do
@@ -252,13 +252,13 @@ XML
 
     describe ".has_one and .belongs_to" do
       before do
-        Recurly.const_set :Day, Class.new(Resource)
+        Recurly2.const_set :Day, Class.new(Resource)
         resource.has_one :day
         Day.belongs_to :resource
       end
 
       after do
-        Recurly.send :remove_const, :Day
+        Recurly2.send :remove_const, :Day
       end
 
       it "must define an association" do
@@ -301,13 +301,13 @@ XML
 
     describe ".has_one, readonly => false" do
       before do
-        Recurly.const_set :Day, Class.new(Resource)
+        Recurly2.const_set :Day, Class.new(Resource)
         resource.has_one :day, :readonly => false
         @record = resource.new
       end
 
       after do
-        Recurly.send :remove_const, :Day
+        Recurly2.send :remove_const, :Day
       end
 
       it "must assign relation from a Hash" do
@@ -475,14 +475,14 @@ XML
 
       describe "invalid records" do
         before do
-          Recurly.const_set :Child, resource
+          Recurly2.const_set :Child, resource
           resource.has_one :child, :readonly => false
           record.child = resource.new
           stub_api_request(:post, 'resources') { XML[422] }
         end
 
         after do
-          Recurly.send :remove_const, :Child
+          Recurly2.send :remove_const, :Child
         end
 
         it "#save must return false and assign errors" do

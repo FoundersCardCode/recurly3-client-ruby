@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   class Transaction < Resource
     # The base error class for transaction errors, raised when a transaction
     # fails.
@@ -26,7 +26,7 @@ module Recurly
     #   end
     class Error < API::UnprocessableEntity
       # @return [Transaction] The transaction as returned (or updated) by
-      #   Recurly.
+      #   Recurly2.
       attr_reader :transaction
 
       def initialize request, response, transaction

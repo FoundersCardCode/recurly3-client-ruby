@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   # Redemptions are not top-level resources, but they can be accessed (and
   # created) through {Coupon} instances.
   #

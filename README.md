@@ -25,8 +25,8 @@ speed boost) if it's available and loaded in your app's environment.
 Use the following template to configure Recurly:
 
 ``` ruby
-Recurly.subdomain      = ENV['RECURLY_SUBDOMAIN']
-Recurly.api_key        = ENV['RECURLY_API_KEY']
+Recurly2.subdomain      = ENV['RECURLY_SUBDOMAIN']
+Recurly2.api_key        = ENV['RECURLY_API_KEY']
 ```
 
 > Note: In Rails, these would be added in an initializer `config/initializers/recurly.rb`.
@@ -40,21 +40,21 @@ Configure the client library with
 The default currency is USD. To override with a different code:
 
 ``` ruby
-Recurly.default_currency = 'EUR' # Assign nil to disable the default entirely.
+Recurly2.default_currency = 'EUR' # Assign nil to disable the default entirely.
 ```
 
-If you are using [Recurly.js](https://js.recurly.com) you can store "Public API Key" (which can be found
+If you are using [Recurly2.js](https://js.recurly.com) you can store "Public API Key" (which can be found
 under "API Credentials" on the `api_access` admin page):
 
 ``` ruby
-Recurly.js.public_key = ENV['RECURLY_PUBLIC_API_KEY']
+Recurly2.js.public_key = ENV['RECURLY_PUBLIC_API_KEY']
 ```
 
 Then, in your Rails project you can create `recurly_service.js.erb` file and
 [configure](https://docs.recurly.com/js/#configure) recurly.js with public key this way:
 
 ``` js
-recurly.configure({ publicKey: '<%= Recurly.js.public_key %>'});
+recurly.configure({ publicKey: '<%= Recurly2.js.public_key %>'});
 ```
 
 The client library currently uses a Net::HTTP adapter. If you need to
@@ -77,7 +77,7 @@ If you are using the client in a multi-threaded environment and require a differ
 thread you can use the following within the thread's context:
 
 ``` ruby
-Recurly.config({
+Recurly2.config({
   subdomain: ENV['RECURLY_SUBDOMAIN']
   api_key: ENV['RECURLY_API_KEY'],
   default_currency: "US"
@@ -85,7 +85,7 @@ Recurly.config({
 ```
 
 Any configuration items you do not include in the above config call will be defaulted to the standard
-configuration items. For example if you do not define default_currency then Recurly.default_currency
+configuration items. For example if you do not define default_currency then Recurly2.default_currency
 will be used.
 
 ## Supported Ruby Versions

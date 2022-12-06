@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
 
   # Recurly Documentation: https://dev.recurly.com/docs/list-active-coupons
   class Coupon < Resource
@@ -73,7 +73,7 @@ module Recurly
 
       redemption_options = {
         :account_code => account_code,
-        :currency     => currency || Recurly.default_currency
+        :currency     => currency || Recurly2.default_currency
       }.merge(extra_opts)
 
       redemption = Redemption.new(redemption_options)

@@ -1,5 +1,5 @@
 # Recurly is a Ruby client for Recurly's REST API.
-module Recurly
+module Recurly2
   require 'recurly/error'
   require 'recurly/helper'
   require 'recurly/api'
@@ -74,7 +74,7 @@ module Recurly
       end
 
       defined? @api_key and @api_key or raise(
-        ConfigurationError, "Recurly.api_key not configured"
+        ConfigurationError, "Recurly2.api_key not configured"
       )
     end
     attr_writer :api_key
@@ -90,7 +90,7 @@ module Recurly
     end
     attr_writer :default_currency
 
-    # @return [JS] The Recurly.js module.
+    # @return [JS] The Recurly2.js module.
     def js
       JS
     end
@@ -102,11 +102,11 @@ module Recurly
     # @return [Logger, nil]
     # @example
     #   require 'logger'
-    #   Recurly.logger = Logger.new STDOUT
+    #   Recurly2.logger = Logger.new STDOUT
     # @example Rails applications automatically log to the Rails log:
-    #   Recurly.logger = Rails.logger
+    #   Recurly2.logger = Rails.logger
     # @example Turn off logging entirely:
-    #   Recurly.logger = nil # Or Recurly.logger = Logger.new nil
+    #   Recurly2.logger = nil # Or Recurly2.logger = Logger.new nil
     attr_accessor :logger
 
     def logger=(logger)

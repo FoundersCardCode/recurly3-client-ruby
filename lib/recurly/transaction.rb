@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   class Transaction < Resource
     require 'recurly/transaction/errors'
 
@@ -84,7 +84,7 @@ module Recurly
 
     # @see Resource#initialize
     def initialize(attributes = {})
-      super({ :currency => Recurly.default_currency }.merge attributes)
+      super({ :currency => Recurly2.default_currency }.merge attributes)
     end
 
     # Saves new records only.

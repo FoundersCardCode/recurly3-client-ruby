@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   class Resource
     class Association
       attr_reader :relation, :resource_class

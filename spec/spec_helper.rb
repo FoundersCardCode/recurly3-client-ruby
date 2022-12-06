@@ -27,16 +27,16 @@ module SpecHelper
     end
     stub_request(method, uri.to_s)
       .with(
-        basic_auth: [CGI.escape(Recurly.api_key), ''],
+        basic_auth: [CGI.escape(Recurly2.api_key), ''],
         headers: Recurly::API.headers
       )
       .to_return(response)
   end
 
   def reset_recurly_environment!
-    Recurly.subdomain = 'api'
-    Recurly.api_key = 'api_key'
-    Recurly.default_currency = 'USD'
+    Recurly2.subdomain = 'api'
+    Recurly2.api_key = 'api_key'
+    Recurly2.default_currency = 'USD'
   end
 end
 

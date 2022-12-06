@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   # Represents an account's Billing Information. You normally want to use a token when creating billing information.
   #
   # Recurly Documentation: https://dev.recurly.com/docs/create-an-accounts-billing-info-token

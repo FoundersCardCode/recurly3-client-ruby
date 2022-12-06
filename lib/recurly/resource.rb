@@ -1,7 +1,7 @@
 require 'date'
 require 'erb'
 
-module Recurly
+module Recurly2
   # The base class for all Recurly resources (e.g. {Account}, {Subscription},
   # {Transaction}).
   #
@@ -431,7 +431,7 @@ module Recurly
 
           if association = find_association(el.name)
             class_name = association_class_name(association, el.name)
-            resource_class = Recurly.const_get(class_name)
+            resource_class = Recurly2.const_get(class_name)
             is_many = association.relation == :has_many
 
             # Is this a link, or is it embedded data?
@@ -547,7 +547,7 @@ module Recurly
         associations_helper.module_eval do
           define_method(member_name) { self[member_name] }
           if options.key?(:readonly) && options[:readonly] == false
-            associated = Recurly.const_get Helper.classify(member_name), false
+            associated = Recurly2.const_get Helper.classify(member_name), false
             define_method "#{member_name}=" do |member|
               associated_uri = "#{path}/#{member_name}"
               self[member_name] = case member
@@ -608,8 +608,8 @@ module Recurly
 
       def find_resource_class(name)
         resource_name = Helper.classify(name)
-        if Recurly.const_defined?(resource_name, false)
-          Recurly.const_get(resource_name, false)
+        if Recurly2.const_defined?(resource_name, false)
+          Recurly2.const_get(resource_name, false)
         end
       end
     end
@@ -1107,7 +1107,7 @@ module Recurly
         association_name = options[:association_name] || name
         associated_class_name = self.class.find_association(association_name).class_name
         associated_class_name ||= Helper.classify(name)
-        Recurly.const_get(associated_class_name, false).send(:new, value)
+        Recurly2.const_get(associated_class_name, false).send(:new, value)
       when Proc, Resource, Resource::Pager, nil
         value
       else

@@ -1,6 +1,6 @@
 require 'erb'
 
-module Recurly
+module Recurly2
   class Resource
     # Pages through an index resource, yielding records as it goes. It's rare
     # to instantiate one on its own: use {Resource.paginate},

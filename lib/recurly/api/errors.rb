@@ -1,6 +1,6 @@
 require 'cgi'
 
-module Recurly
+module Recurly2
   class API
     # The superclass to all errors that occur when making an API request.
     class ResponseError < Error
@@ -169,7 +169,7 @@ module Recurly
 
     # === 502 Gateway Error
     #
-    # The load balancer or web server had trouble connecting to the Recurly.
+    # The load balancer or web server had trouble connecting to the Recurly2.
     # Please try the request again.
     class GatewayError < ServerError
     end

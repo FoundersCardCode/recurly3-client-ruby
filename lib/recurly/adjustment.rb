@@ -1,4 +1,4 @@
-module Recurly
+module Recurly2
   # The history of your customer's Recurly account can be tracked through adjustments, made up of credits and charges.
   #
   # Recurly Documentation: https://dev.recurly.com/docs/adjustment-object
@@ -70,7 +70,7 @@ module Recurly
     #   account.adjustments.new attributes
     # @see Resource#initialize
     def initialize(attributes = {})
-      super({ :currency => Recurly.default_currency }.merge attributes)
+      super({ :currency => Recurly2.default_currency }.merge attributes)
     end
 
     # Adjustments are only writeable through an {Account} instance.

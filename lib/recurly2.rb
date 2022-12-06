@@ -1,46 +1,46 @@
 # Recurly is a Ruby client for Recurly's REST API.
 module Recurly2
-  require 'recurly/error'
-  require 'recurly/helper'
-  require 'recurly/api'
-  require 'recurly/resource'
-  require 'recurly/shipping_address'
-  require 'recurly/billing_info'
-  require 'recurly/custom_field'
-  require 'recurly/account_acquisition'
-  require 'recurly/account'
-  require 'recurly/account_balance'
-  require 'recurly/add_on'
-  require 'recurly/address'
-  require 'recurly/tax_detail'
-  require 'recurly/tax_type'
-  require 'recurly/juris_detail'
-  require 'recurly/adjustment'
-  require 'recurly/coupon'
-  require 'recurly/credit_payment'
-  require 'recurly/helper'
-  require 'recurly/invoice'
-  require 'recurly/invoice_collection'
-  require 'recurly/item'
-  require 'recurly/js'
-  require 'recurly/money'
-  require 'recurly/measured_unit'
-  require 'recurly/note'
-  require 'recurly/plan'
-  require 'recurly/redemption'
-  require 'recurly/shipping_fee'
-  require 'recurly/shipping_method'
-  require 'recurly/subscription'
-  require 'recurly/subscription_add_on'
-  require 'recurly/transaction'
-  require 'recurly/usage'
-  require 'recurly/version'
-  require 'recurly/xml'
-  require 'recurly/delivery'
-  require 'recurly/gift_card'
-  require 'recurly/purchase'
-  require 'recurly/webhook'
-  require 'recurly/tier'
+  require 'recurly2/error'
+  require 'recurly2/helper'
+  require 'recurly2/api'
+  require 'recurly2/resource'
+  require 'recurly2/shipping_address'
+  require 'recurly2/billing_info'
+  require 'recurly2/custom_field'
+  require 'recurly2/account_acquisition'
+  require 'recurly2/account'
+  require 'recurly2/account_balance'
+  require 'recurly2/add_on'
+  require 'recurly2/address'
+  require 'recurly2/tax_detail'
+  require 'recurly2/tax_type'
+  require 'recurly2/juris_detail'
+  require 'recurly2/adjustment'
+  require 'recurly2/coupon'
+  require 'recurly2/credit_payment'
+  require 'recurly2/helper'
+  require 'recurly2/invoice'
+  require 'recurly2/invoice_collection'
+  require 'recurly2/item'
+  require 'recurly2/js'
+  require 'recurly2/money'
+  require 'recurly2/measured_unit'
+  require 'recurly2/note'
+  require 'recurly2/plan'
+  require 'recurly2/redemption'
+  require 'recurly2/shipping_fee'
+  require 'recurly2/shipping_method'
+  require 'recurly2/subscription'
+  require 'recurly2/subscription_add_on'
+  require 'recurly2/transaction'
+  require 'recurly2/usage'
+  require 'recurly2/version'
+  require 'recurly2/xml'
+  require 'recurly2/delivery'
+  require 'recurly2/gift_card'
+  require 'recurly2/purchase'
+  require 'recurly2/webhook'
+  require 'recurly2/tier'
 
   @subdomain = nil
 
@@ -54,13 +54,13 @@ module Recurly2
     # Call this method with out any arguments to have it unset the thread context config values.
     # @param config_params - Hash with the following keys: subdomain, api_key, default_currency
     def config(config_params = nil)
-      Thread.current[:recurly_config] = config_params
+      Thread.current[:recurly2_config] = config_params
     end
 
     # @return [String] A subdomain.
     def subdomain
-      if Thread.current[:recurly_config] && Thread.current[:recurly_config][:subdomain]
-        return Thread.current[:recurly_config][:subdomain]
+      if Thread.current[:recurly2_config] && Thread.current[:recurly2_config][:subdomain]
+        return Thread.current[:recurly2_config][:subdomain]
       end
       @subdomain || 'api'
     end
@@ -69,8 +69,8 @@ module Recurly2
     # @return [String] An API key.
     # @raise [ConfigurationError] If not configured.
     def api_key
-      if Thread.current[:recurly_config] && Thread.current[:recurly_config][:api_key]
-        return Thread.current[:recurly_config][:api_key]
+      if Thread.current[:recurly2_config] && Thread.current[:recurly2_config][:api_key]
+        return Thread.current[:recurly2_config][:api_key]
       end
 
       defined? @api_key and @api_key or raise(
@@ -81,8 +81,8 @@ module Recurly2
 
     # @return [String, nil] A default currency.
     def default_currency
-      if Thread.current[:recurly_config] &&  Thread.current[:recurly_config][:default_currency]
-        return Thread.current[:recurly_config][:default_currency]
+      if Thread.current[:recurly2_config] &&  Thread.current[:recurly2_config][:default_currency]
+        return Thread.current[:recurly2_config][:default_currency]
       end
 
       return  @default_currency if defined? @default_currency

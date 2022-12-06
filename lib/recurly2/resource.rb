@@ -114,9 +114,9 @@ module Recurly2
   #
   #   Account.find_each { |account| p account }
   class Resource
-    require 'recurly/resource/errors'
-    require 'recurly/resource/pager'
-    require 'recurly/resource/association'
+    require 'recurly2/resource/errors'
+    require 'recurly2/resource/pager'
+    require 'recurly2/resource/association'
 
     # Raised when a record cannot be found.
     #

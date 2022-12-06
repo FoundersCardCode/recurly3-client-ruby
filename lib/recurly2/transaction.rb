@@ -1,6 +1,6 @@
 module Recurly2
   class Transaction < Resource
-    require 'recurly/transaction/errors'
+    require 'recurly2/transaction/errors'
 
     # @macro [attach] scope
     #   @scope class

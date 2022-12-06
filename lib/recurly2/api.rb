@@ -12,7 +12,7 @@ module Recurly2
   #   Recurly2::API.put 'accounts/1', xml_body # => #<Net::HTTPOK ...>
   #   Recurly2::API.delete 'accounts/1'        # => #<Net::HTTPNoContent ...>
   class API
-    require 'recurly/api/errors'
+    require 'recurly2/api/errors'
     require 'openssl'
 
     @@base_uri = "https://api.recurly.com/v2/"
@@ -107,4 +107,4 @@ module Recurly2
   end
 end
 
-require 'recurly/api/net_http_adapter'
+require 'recurly2/api/net_http_adapter'

@@ -97,7 +97,7 @@ if defined? Nokogiri
   if RUBY_VERSION < "2.1.0"
     raise insecure_noko_msg
   else
-    require 'recurly/xml/nokogiri'
+    require 'recurly2/xml/nokogiri'
     version = Gem::Version.new(Nokogiri::VERSION)
 
     if version.segments.length == 3
@@ -118,5 +118,5 @@ if defined? Nokogiri
     end
   end
 else
-  require 'recurly/xml/rexml'
+  require 'recurly2/xml/rexml'
 end

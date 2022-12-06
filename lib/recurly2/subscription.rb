@@ -1,6 +1,6 @@
 module Recurly2
   class Subscription < Resource
-    require 'recurly/subscription/add_ons'
+    require 'recurly2/subscription/add_ons'
 
     # @macro [attach] scope
     #   @scope class

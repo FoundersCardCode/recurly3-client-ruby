@@ -137,7 +137,7 @@ module Recurly2
     def mark_failed
       return false unless link? :mark_failed
       InvoiceCollection.from_response follow_link(:mark_failed)
-    rescue Recurly::API::UnprocessableEntity => e
+    rescue Recurly2::API::UnprocessableEntity => e
       raise Invalid, e.message
     end
 
@@ -176,7 +176,7 @@ module Recurly2
     # @raise [Error] If the transaction fails.
     def enter_offline_payment(attrs={})
       Transaction.from_response API.post("#{uri}/transactions", attrs.empty? ? nil : Transaction.to_xml(attrs))
-    rescue Recurly::API::UnprocessableEntity => e
+    rescue Recurly2::API::UnprocessableEntity => e
       raise Invalid, e.message
     end
 
@@ -233,7 +233,7 @@ module Recurly2
     # @return [true, false]
     # @raise [RuntimeError] Raises error if you attempt to create an invoice.
     # @example
-    #   invoice = Recurly::Invoice.find('1000')
+    #   invoice = Recurly2::Invoice.find('1000')
     #   invoice.po_number = '1234'
     #   invoice.save # => true
     def save

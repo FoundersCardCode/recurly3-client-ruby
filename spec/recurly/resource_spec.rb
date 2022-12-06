@@ -38,7 +38,7 @@ Content-Type: text/html; charset=utf-8
 <html></html>
 HTML
         end
-        proc { Resource.find(123) }.must_raise Recurly::Error
+        proc { Resource.find(123) }.must_raise Recurly2::Error
       end
     end
 

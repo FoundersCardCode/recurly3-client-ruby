@@ -11,15 +11,15 @@ module Recurly2
     # create child records.
     #
     # @example Through a resource class:
-    #   Recurly::Account.paginate # => #<Recurly::Resource::Pager...>
+    #   Recurly2::Account.paginate # => #<Recurly2::Resource::Pager...>
     #
-    #   Recurly::Account.find_each { |a| p a }
+    #   Recurly2::Account.find_each { |a| p a }
     # @example Through an resource instance:
     #   account.transactions
-    #   # => #<Recurly::Resource::Pager...>
+    #   # => #<Recurly2::Resource::Pager...>
     #
     #   account.transactions.new(attributes) # or #create, or #create!
-    #   # => #<Recurly::Transaction ...>
+    #   # => #<Recurly2::Transaction ...>
     #
     #   account.transactions.find_each do |transaction|
     #     puts transaction
@@ -29,7 +29,7 @@ module Recurly2
     #     order: :desc,
     #     state: :collected
     #   }
-    #   invoices = Recurly::Invoice.paginate(opts)
+    #   invoices = Recurly2::Invoice.paginate(opts)
     #   begin
     #     invoices.each do |invoice|
     #       puts invoice.invoice_number
@@ -44,7 +44,7 @@ module Recurly2
     #     order: :desc,
     #     state: :collected
     #   }
-    #   Recurly::Invoice.find_each(opts) do |invoice|
+    #   Recurly2::Invoice.find_each(opts) do |invoice|
     #     puts invoice
     #   end
     #
@@ -120,7 +120,7 @@ module Recurly2
       #     end_time: DateTime.new(2017,1,1),
       #     state: :collected
       #   }
-      #   count = Recurly::Invoice.paginate(opts).count
+      #   count = Recurly2::Invoice.paginate(opts).count
       #   #=> 42
       #
       # @return [Integer] The total record count of the resource in question.
@@ -189,7 +189,7 @@ module Recurly2
       #   datetimes less than or equal to the supplied datetime. Accepts an
       #   ISO 8601 date or date and time.
       # @example
-      #   Recurly::Account.paginate(sort: :updated_at, per_page: 20)
+      #   Recurly2::Account.paginate(sort: :updated_at, per_page: 20)
       def paginate(options = {})
         dup.instance_eval {
           @collection = @etag = nil
@@ -208,7 +208,7 @@ module Recurly2
       #
       # @return [Resource] A new record.
       # @example
-      #   account = Recurly::Account.find 'schrader'
+      #   account = Recurly2::Account.find 'schrader'
       #   subscription = account.subscriptions.new attributes
       # @see Resource.new
       def new attributes = {}
@@ -225,7 +225,7 @@ module Recurly2
       # @return [Resource] The record.
       # @raise [Transaction::Error] A monetary transaction failed.
       # @example
-      #   account = Recurly::Account.find 'schrader'
+      #   account = Recurly2::Account.find 'schrader'
       #   subscription = account.subscriptions.create attributes
       # @see Resource.create
       def create attributes = {}
@@ -236,7 +236,7 @@ module Recurly2
       #
       # @return [Resource] The record.
       # @example
-      #   account = Recurly::Account.find 'schrader'
+      #   account = Recurly2::Account.find 'schrader'
       #   subscription = account.subscriptions.build attributes
       # @see Resource.new
       def build attributes = {}
@@ -249,7 +249,7 @@ module Recurly2
       # @raise [Invalid] The record is invalid.
       # @raise [Transaction::Error] A monetary transaction failed.
       # @example
-      #   account = Recurly::Account.find 'schrader'
+      #   account = Recurly2::Account.find 'schrader'
       #   subscription = account.subscriptions.create! attributes
       # @see Resource.create!
       def create! attributes = {}

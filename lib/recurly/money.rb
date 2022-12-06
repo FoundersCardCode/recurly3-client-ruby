@@ -5,14 +5,14 @@ module Recurly2
     # @param currencies [Hash] A hash of currency codes and amounts.
     # @example
     #   # 12 United States dollars.
-    #   Recurly::Money.new :USD => 12_00
+    #   Recurly2::Money.new :USD => 12_00
     #
     #   # $9.99 (or €6.99).
-    #   Recurly::Money.new :USD => 9_99, :EUR => 6_99
+    #   Recurly2::Money.new :USD => 9_99, :EUR => 6_99
     #
     #   # Using a default currency.
     #   Recurly2.default_currency = 'USD'
-    #   Recurly::Money.new(49_00) # => #<Recurly::Money USD: 49_00>
+    #   Recurly2::Money.new(49_00) # => #<Recurly2::Money USD: 49_00>
     def initialize currencies = {}, parent = nil, attribute = nil
       @currencies = {}
       @parent = parent
@@ -63,8 +63,8 @@ module Recurly2
     # @return [-1, 0, 1]
     # @param other [Money]
     # @example
-    #   [Recurly::Money.new(2_00), Recurly::Money.new(1_00)].sort
-    #   # => [#<Recurly::Money USD: 1_00>, #<Recurly::Money USD: 2_00>]
+    #   [Recurly2::Money.new(2_00), Recurly2::Money.new(1_00)].sort
+    #   # => [#<Recurly2::Money USD: 1_00>, #<Recurly2::Money USD: 2_00>]
     # @see Hash#<=>
     def <=> other
       if currencies.keys.length == 1 && other.currencies.length == 1

@@ -62,7 +62,7 @@ configure the settings passed to Net::HTTP (e.g., an SSL certificates path or ti
 make sure you assign them when initializing the library:
 
 ``` ruby
-Recurly::API.net_http = {
+Recurly2::API.net_http = {
   ca_path: "/etc/ssl/certs",
   open_timeout: 5, # 5 seconds (defaults to 60)
   read_timeout: 45 # 45 seconds (defaults to 60)

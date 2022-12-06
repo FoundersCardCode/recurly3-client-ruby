@@ -90,11 +90,11 @@ module Recurly2
     # Saves new records only.
     #
     # @return [true, false]
-    # @raise [Recurly::Error] For persisted transactions.
+    # @raise [Recurly2::Error] For persisted transactions.
     # @see Resource#save
     def save
       return super if new_record?
-      raise Recurly::Error, "#{self.class.collection_name} cannot be updated"
+      raise Recurly2::Error, "#{self.class.collection_name} cannot be updated"
     end
 
     # Refunds the transaction.

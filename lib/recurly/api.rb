@@ -7,10 +7,10 @@ module Recurly2
   # recognized by the Recurly API.
   #
   # @example
-  #   Recurly::API.get 'accounts'             # => #<Net::HTTPOK ...>
-  #   Recurly::API.post 'accounts', xml_body  # => #<Net::HTTPCreated ...>
-  #   Recurly::API.put 'accounts/1', xml_body # => #<Net::HTTPOK ...>
-  #   Recurly::API.delete 'accounts/1'        # => #<Net::HTTPNoContent ...>
+  #   Recurly2::API.get 'accounts'             # => #<Net::HTTPOK ...>
+  #   Recurly2::API.post 'accounts', xml_body  # => #<Net::HTTPCreated ...>
+  #   Recurly2::API.put 'accounts/1', xml_body # => #<Net::HTTPOK ...>
+  #   Recurly2::API.delete 'accounts/1'        # => #<Net::HTTPNoContent ...>
   class API
     require 'recurly/api/errors'
     require 'openssl'

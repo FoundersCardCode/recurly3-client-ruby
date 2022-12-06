@@ -103,7 +103,7 @@ module Recurly2
         :body => builder.to_s
       )
 
-      Pager.new(Recurly::Coupon, uri: resp['location'], parent: self, etag: resp['ETag'])
+      Pager.new(Recurly2::Coupon, uri: resp['location'], parent: self, etag: resp['ETag'])
     end
 
     # Redeem a coupon on the given account code

@@ -35,7 +35,7 @@ module Recurly2
       return false if persisted?
       copy_from coupon.redeem account, currency
       true
-    rescue Recurly::API::UnprocessableEntity => e
+    rescue Recurly2::API::UnprocessableEntity => e
       apply_errors e
       false
     end

@@ -47,7 +47,7 @@ module Recurly2
       def xml
         @xml ||= begin
           XML.new(response.body) if response and response.body and not response.body.empty?
-        rescue Recurly::XML::ParseError
+        rescue Recurly2::XML::ParseError
           nil
         end
       end

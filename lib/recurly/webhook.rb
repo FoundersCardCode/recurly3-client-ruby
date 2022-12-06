@@ -5,17 +5,17 @@ module Recurly2
   # details where available.
   #
   # @example
-  #   Recurly::Webhook.parse(xml_body)  # => #<Recurly::Webhook::NewAccountNotification ...>
+  #   Recurly2::Webhook.parse(xml_body)  # => #<Recurly2::Webhook::NewAccountNotification ...>
   #
-  #   notification = Recurly::Webhook.parse(xml_body)
+  #   notification = Recurly2::Webhook.parse(xml_body)
   #   case notification
-  #   when Recurly::Webhook::NewAccountNoficiation
+  #   when Recurly2::Webhook::NewAccountNoficiation
   #     # A new account was created
   #     ...
-  #   when Recurly::Webhook::NewSubscriptionNotification
+  #   when Recurly2::Webhook::NewSubscriptionNotification
   #     # A new subscription was added
   #     ...
-  #   when Recurly::Webhook::SubscriptionNotification
+  #   when Recurly2::Webhook::SubscriptionNotification
   #     # A subscription-related notification was sent
   #     ...
   #   end

@@ -12,13 +12,13 @@ module Recurly2
   # == Life Cycle
   #
   # To take you through the typical life cycle of a resource, we'll use
-  # {Recurly::Account} as an example.
+  # {Recurly2::Account} as an example.
   #
   # === Creating a Record
   #
   # You can instantiate a record before attempting to save it.
   #
-  #   account = Recurly::Account.new :first_name => 'Walter'
+  #   account = Recurly2::Account.new :first_name => 'Walter'
   #
   # Once instantiated, you can assign and reassign any attribute.
   #
@@ -46,20 +46,20 @@ module Recurly2
   #
   # You can also create accounts in one fell swoop.
   #
-  #   Recurly::Account.create(
+  #   Recurly2::Account.create(
   #     :first_name   => 'Jesse'
   #     :last_name    => 'Pinkman'
   #     :account_code => 'capn_cook'
   #   )
-  #   # => #<Recurly::Account account_code: "capn_cook" ...>
+  #   # => #<Recurly2::Account account_code: "capn_cook" ...>
   #
   # You can use alternative "bang" methods for exception control. If the record
-  # fails to save, a Recurly::Resource::Invalid exception will be raised.
+  # fails to save, a Recurly2::Resource::Invalid exception will be raised.
   #
   #   begin
-  #     account = Recurly::Account.new :first_name => 'Junior'
+  #     account = Recurly2::Account.new :first_name => 'Junior'
   #     account.save!
-  #   rescue Recurly::Resource::Invalid
+  #   rescue Recurly2::Resource::Invalid
   #     p account.errors
   #   end
   #
@@ -67,8 +67,8 @@ module Recurly2
   # example, you use the <tt>create!</tt> method).
   #
   #   begin
-  #     Recurly::Account.create! :first_name => 'Skylar', :last_name => 'White'
-  #   rescue Recurly::Resource::Invalid => e
+  #     Recurly2::Account.create! :first_name => 'Skylar', :last_name => 'White'
+  #   rescue Recurly2::Resource::Invalid => e
   #     p e.record.errors
   #   end
   #
@@ -76,10 +76,10 @@ module Recurly2
   #
   # Records are fetched by their unique identifiers.
   #
-  #   account = Recurly::Account.find 'better_call_saul'
-  #   # => #<Recurly::Account account_code: "better_call_saul" ...>
+  #   account = Recurly2::Account.find 'better_call_saul'
+  #   # => #<Recurly2::Account account_code: "better_call_saul" ...>
   #
-  # If the record doesn't exist, a Recurly::Resource::NotFound exception will
+  # If the record doesn't exist, a Recurly2::Resource::NotFound exception will
   # be raised.
   #
   # === Updating a Record
@@ -89,7 +89,7 @@ module Recurly2
   #   account.update_attributes :first_name => 'Saul', :last_name => 'Goodman'
   #   # => true
   #
-  # (A bang method, update_attributes!, will raise Recurly::Resource::Invalid.)
+  # (A bang method, update_attributes!, will raise Recurly2::Resource::Invalid.)
   #
   # You can also update a record by setting attributes and calling save.
   #
@@ -122,8 +122,8 @@ module Recurly2
     #
     # @example
     #   begin
-    #     Recurly::Account.find 'tortuga'
-    #   rescue Recurly::Resource::NotFound => e
+    #     Recurly2::Account.find 'tortuga'
+    #   rescue Recurly2::Resource::NotFound => e
     #     e.message # => "Can't find Account with account_code = tortuga"
     #   end
     class NotFound < API::NotFound
@@ -136,8 +136,8 @@ module Recurly2
     #
     # @example
     #   begin
-    #     Recurly::Account.create! :first_name => "Flynn"
-    #   rescue Recurly::Resource::Invalid => e
+    #     Recurly2::Account.create! :first_name => "Flynn"
+    #   rescue Recurly2::Resource::Invalid => e
     #     e.record.errors # => errors: {"account_code"=>["can't be blank"]}>
     #   end
     class Invalid < Error
@@ -166,7 +166,7 @@ module Recurly2
     class << self
       # @return [String] The demodulized name of the resource class.
       # @example
-      #   Recurly::Account.name # => "Account"
+      #   Recurly2::Account.name # => "Account"
       def resource_name
         Helper.demodulize name
       end
@@ -174,7 +174,7 @@ module Recurly2
       # @return [String] The underscored, pluralized name of the resource
       #   class.
       # @example
-      #   Recurly::Account.collection_name # => "accounts"
+      #   Recurly2::Account.collection_name # => "accounts"
       def collection_name
         Helper.pluralize Helper.underscore(resource_name)
       end
@@ -182,7 +182,7 @@ module Recurly2
 
       # @return [String] The underscored name of the resource class.
       # @example
-      #   Recurly::Account.member_name # => "account"
+      #   Recurly2::Account.member_name # => "account"
       def member_name
         Helper.underscore resource_name
       end
@@ -191,8 +191,8 @@ module Recurly2
       #   API's base URI.
       # @param uuid [String, nil]
       # @example
-      #   Recurly::Account.member_path "code" # => "accounts/code"
-      #   Recurly::Account.member_path nil    # => "accounts"
+      #   Recurly2::Account.member_path "code" # => "accounts/code"
+      #   Recurly2::Account.member_path nil    # => "accounts"
       def member_path(uuid)
         uuid = ERB::Util.url_encode(uuid) if uuid
         [collection_path, uuid].compact.join '/'
@@ -252,12 +252,12 @@ module Recurly2
       # @option options [DateTime, Time, Integer] :cursor A timestamp that the
       #   pager will skim back to and return records created before it
       # @option options [String] :etag When set, will raise
-      #   {Recurly::API::NotModified} if the pager's loaded page content has
+      #   {Recurly2::API::NotModified} if the pager's loaded page content has
       #   not changed
       # @example Fetch 50 records and iterate over them
-      #   Recurly::Account.paginate(:per_page => 50).each { |a| p a }
+      #   Recurly2::Account.paginate(:per_page => 50).each { |a| p a }
       # @example Fetch records before January 1, 2011
-      #   Recurly::Account.paginate(:cursor => Time.new(2011, 1, 1))
+      #   Recurly2::Account.paginate(:cursor => Time.new(2011, 1, 1))
       def paginate(options = {})
         Pager.new self, options
       end
@@ -270,7 +270,7 @@ module Recurly2
 
       # @return [Hash] Defined scopes per resource.
       def scopes
-        @scopes ||= Recurly::Helper.hash_with_indifferent_read_access
+        @scopes ||= Recurly2::Helper.hash_with_indifferent_read_access
       end
 
       # @return [Module] Module of scopes methods.
@@ -297,13 +297,13 @@ module Recurly2
       # @yield [record]
       # @see Pager#paginate
       # @example
-      #   Recurly::Account.find_each { |a| p a }
+      #   Recurly2::Account.find_each { |a| p a }
       # @example With sorting and filter
       #   opts = {
       #     begin_time: DateTime.new(2016,1,1),
       #     sort: :updated_at
       #   }
-      #   Recurly::Account.find_each(opts) do |a|
+      #   Recurly2::Account.find_each(opts) do |a|
       #     puts a.inspect
       #   end
       def find_each(options = {}, &block)
@@ -313,7 +313,7 @@ module Recurly2
       # @return [Integer] The total record count of the resource in question.
       # @see Pager#count
       # @example
-      #   Recurly::Account.count # => 42
+      #   Recurly2::Account.count # => 42
       def count
         paginate.count
       end
@@ -337,8 +337,8 @@ module Recurly2
       # @raise [API::NotModified] If the <tt>:etag</tt> option is set and
       #   matches the server's.
       # @example
-      #   Recurly::Account.find "heisenberg"
-      #   # => #<Recurly::Account account_code: "heisenberg", ...>
+      #   Recurly2::Account.find "heisenberg"
+      #   # => #<Recurly2::Account account_code: "heisenberg", ...>
       #   Use the following identifiers for these types of objects:
       #     for accounts use account_code
       #     for plans use plan_code
@@ -392,7 +392,7 @@ module Recurly2
           record.instance_eval { @etag, @response = response['ETag'], response }
           record
         else
-          raise Recurly::Error, "Content-Type \"#{content_type}\" is not accepted"
+          raise Recurly2::Error, "Content-Type \"#{content_type}\" is not accepted"
         end
       end
 
@@ -773,7 +773,7 @@ module Recurly2
     end
 
     def as_json(options = nil)
-      attributes.reject { |k, v| v.is_a?(Recurly::Resource::Pager) }
+      attributes.reject { |k, v| v.is_a?(Recurly2::Resource::Pager) }
     end
 
     # @return [Hash] The raw hash of record href links.
@@ -795,7 +795,7 @@ module Recurly2
     # @param key [Symbol, String] The name of the link to be followed.
     # @param options [Hash] A hash of API options.
     # @example
-    #   account.read_link :billing_info # => <Recurly::BillingInfo>
+    #   account.read_link :billing_info # => <Recurly2::BillingInfo>
     def follow_link(key, options = {})
       if link = links[key = key.to_s]
         response = API.send link[:method], link[:href], options[:body], options
@@ -805,7 +805,7 @@ module Recurly2
         end
         response
       end
-    rescue Recurly::API::NotFound
+    rescue Recurly2::API::NotFound
       raise unless resource_class
     end
 
@@ -814,7 +814,7 @@ module Recurly2
     # @return [String] An XML string.
     # @param options [Hash] A hash of XML options.
     # @example
-    #   Recurly::Account.new(:account_code => 'code').to_xml
+    #   Recurly2::Account.new(:account_code => 'code').to_xml
     #   # => "<account><account_code>code</account_code></account>"
     def to_xml(options = {})
       builder = options[:builder] || XML.new("<#{self.class.xml_root_key}/>")
@@ -828,7 +828,7 @@ module Recurly2
           value.to_xml options.merge(:builder => node)
         when Array
           value.each do |e|
-            if e.is_a? Recurly::Resource
+            if e.is_a? Recurly2::Resource
               # create a node to hold this resource
               e_node = node.add_element Helper.singularize(key)
               # serialize the resource into this node
@@ -838,7 +838,7 @@ module Recurly2
               node.add_element(Helper.singularize(key), e)
             end
           end
-        when Hash, Recurly::Money
+        when Hash, Recurly2::Money
           value.each_pair { |k, v| node.add_element k.to_s, v }
         else
           node.text = value
@@ -852,7 +852,7 @@ module Recurly2
     # @return [true, false]
     # @raise [Transaction::Error] A monetary transaction failed.
     # @example
-    #   account = Recurly::Account.new
+    #   account = Recurly2::Account.new
     #   account.save # => false
     #   account.account_code = 'account_code'
     #   account.save # => true
@@ -880,8 +880,8 @@ module Recurly2
     # @raise [Invalid] The record was invalid.
     # @raise [Transaction::Error] A monetary transaction failed.
     # @example
-    #   account = Recurly::Account.new
-    #   account.save! # raises Recurly::Resource::Invalid
+    #   account = Recurly2::Account.new
+    #   account.save! # raises Recurly2::Resource::Invalid
     #   account.account_code = 'account_code'
     #   account.save! # => true
     # @see #save
@@ -895,7 +895,7 @@ module Recurly2
     #   unknown state (i.e.  (i.e. new records that haven't been saved and
     #   persisted records with changed attributes).
     # @example
-    #   account = Recurly::Account.new
+    #   account = Recurly2::Account.new
     #   account.valid? # => nil
     #   account.save   # => false
     #   account.valid? # => false
@@ -964,8 +964,8 @@ module Recurly2
     # @return [String, nil] The unique resource identifier (URI) of the record
     #   (if persisted).
     # @example
-    #   Recurly::Account.new(:account_code => "account_code").uri # => nil
-    #   Recurly::Account.find("account_code").uri
+    #   Recurly2::Account.new(:account_code => "account_code").uri # => nil
+    #   Recurly2::Account.find("account_code").uri
     #   # => "https://api.recurly.com/v2/accounts/account_code"
     def uri
       @href ||= ((API.base_uri + path).to_s if persisted?)
@@ -977,11 +977,11 @@ module Recurly2
     # (if the record does not persist on Recurly).
     # @raise [NotFound] The record cannot be found.
     # @example
-    #   account = Recurly::Account.find account_code
-    #   race_condition = Recurly::Account.find account_code
+    #   account = Recurly2::Account.find account_code
+    #   race_condition = Recurly2::Account.find account_code
     #   account.destroy        # => true
     #   account.destroy        # => false (already destroyed)
-    #   race_condition.destroy # raises Recurly::Resource::NotFound
+    #   race_condition.destroy # raises Recurly2::Resource::NotFound
     def destroy
       return false unless persisted?
       @response = API.delete uri

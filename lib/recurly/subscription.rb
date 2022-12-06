@@ -192,7 +192,7 @@ module Recurly2
     # @return true when payment is accepted
     def convert_trial(three_d_secure_action_result_token_id = nil)
       body = if three_d_secure_action_result_token_id != nil
-        builder = Recurly::XML.new("<subscription/>")
+        builder = Recurly2::XML.new("<subscription/>")
         account = builder.add_element('account')
         billing_info = account.add_element('billing_info')
         billing_info.add_element('three_d_secure_action_result_token_id', three_d_secure_action_result_token_id)

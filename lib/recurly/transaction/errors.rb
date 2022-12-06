@@ -14,13 +14,13 @@ module Recurly2
     # @example
     #   begin
     #     subscription.save!
-    #   rescue Recurly::Resource::Invalid => e
+    #   rescue Recurly2::Resource::Invalid => e
     #     # Display e.record.errors...
-    #   rescue Recurly::Transaction::DeclinedError => e
+    #   rescue Recurly2::Transaction::DeclinedError => e
     #     # Display e.message and/or subscription (and associated) errors...
-    #   rescue Recurly::Transaction::RetryableError => e
+    #   rescue Recurly2::Transaction::RetryableError => e
     #     # You should be able to attempt to save this again later.
-    #   rescue Recurly::Transaction::Error => e
+    #   rescue Recurly2::Transaction::Error => e
     #     # Alert yourself of the issue (i.e., log e.transaction).
     #     # Display a generic error message.
     #   end

@@ -15,7 +15,7 @@ module Recurly2
         # Used to store any Net::HTTP settings.
         #
         # @example
-        #   Recurly::API.net_http = {
+        #   Recurly2::API.net_http = {
         #     :verify_mode => OpenSSL::SSL::VERIFY_PEER,
         #     :ca_path     => "/etc/ssl/certs",
         #     :ca_file     => "/opt/local/share/curl/curl-ca-bundle.crt"

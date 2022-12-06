@@ -76,7 +76,7 @@ module Recurly2
       #   API's base URI.
       # @param uuid [String]
       # @example
-      #   Recurly::BillingInfo.member_path "code"
+      #   Recurly2::BillingInfo.member_path "code"
       #   # => "accounts/code/billing_info"
       def member_path uuid
         "accounts/#{uuid}/billing_info"

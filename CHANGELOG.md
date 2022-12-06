@@ -237,12 +237,12 @@ an `InvoiceCollection`.
 
 ```ruby
 # Change This
-Recurly::Invoice.find_each(50) do |invoice|
+Recurly2::Invoice.find_each(50) do |invoice|
   puts invoice
 end
 
 # To This
-Recurly::Invoice.find_each(per_page: 50) do |invoice|
+Recurly2::Invoice.find_each(per_page: 50) do |invoice|
   puts invoice
 end
 ```
@@ -261,7 +261,7 @@ end
 `mark_failed` no longer reloads the invoice with the response returning true or false, it returns either an `InvoiceCollection` if failable and request is successful, it returns `false` if invoice cannot be marked failed. To keep functionality, take the `charge_invoice` of the returned collection:
 
 ```ruby
-invoice = Recurly::Invoice.find('1001')
+invoice = Recurly2::Invoice.find('1001')
 
 failed_collection = invoice.mark_failed
 if failed_collection
@@ -411,7 +411,7 @@ All `country` fields must now contain valid [2 letter ISO 3166 country codes](ht
 The purchases endpoint can create and invoice multiple adjustments at once but our invoices can only contain items in one currency. To make this explicit the currency can no longer be provided on an adjustment, it must be set once for the entire purchase:
 
 ```ruby
-purchase = Recurly::Purchase.new(
+purchase = Recurly2::Purchase.new(
   # The purchase object is the only place you can set the currency:
   currency: 'USD',
   account: {
@@ -789,7 +789,7 @@ This release has API breaking changes around coupon redemptions. See [PR](https:
 
 #### Features
 
-* Added subscription preview: `Recurly::Subscription.preview` [0d55115](https://github.com/recurly/recurly-client-ruby/commit/0d55115b6155b6a2fb36bfbfcf0cd797f861841e)
+* Added subscription preview: `Recurly2::Subscription.preview` [0d55115](https://github.com/recurly/recurly-client-ruby/commit/0d55115b6155b6a2fb36bfbfcf0cd797f861841e)
 * Added tax details to adjustments: `adjustment.tax_details` [c672258](https://github.com/recurly/recurly-client-ruby/commit/c6722589a6174fd2c791d4393522508ec4223694)
 * Removed `taxable` support on adjustments [b542b8a](https://github.com/recurly/recurly-client-ruby/commit/b542b8a16616ba7d4cc1da22200ea3eb7ba426b0)
 * Added `tax_exempt` to accounts, adjustments and plans [b542b8a](https://github.com/recurly/recurly-client-ruby/commit/b542b8a16616ba7d4cc1da22200ea3eb7ba426b0)
@@ -839,7 +839,7 @@ This release has API breaking changes around coupon redemptions. See [PR](https:
 
 #### Bug Fixes
 
-* Raise `Recurly::Error` for all internal HTTP errors ([f3c473a](https://github.com/recurly/recurly-client-ruby/commit/f3c473aa290867ae5eb35eec5b2741b19d1548e5))
+* Raise `Recurly2::Error` for all internal HTTP errors ([f3c473a](https://github.com/recurly/recurly-client-ruby/commit/f3c473aa290867ae5eb35eec5b2741b19d1548e5))
 * Correctly serialize all API links for a resource so that they are not lost on cache marshalling ([c8ae2d5](https://github.com/recurly/recurly-client-ruby/commit/c8ae2d5e5a283cd1cb86536345b22b536f5ff619))
 
 #### Features

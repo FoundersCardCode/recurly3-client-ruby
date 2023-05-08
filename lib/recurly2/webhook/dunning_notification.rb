@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   module Webhook
     class DunningNotification < Notification
       # @return [Account]

@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   # The API class handles all requests to the Recurly API. While most of its
   # functionality is leveraged by the Resource class, it can be used directly,
   # as well.
@@ -7,12 +7,12 @@ module Recurly2
   # recognized by the Recurly API.
   #
   # @example
-  #   Recurly2::API.get 'accounts'             # => #<Net::HTTPOK ...>
-  #   Recurly2::API.post 'accounts', xml_body  # => #<Net::HTTPCreated ...>
-  #   Recurly2::API.put 'accounts/1', xml_body # => #<Net::HTTPOK ...>
-  #   Recurly2::API.delete 'accounts/1'        # => #<Net::HTTPNoContent ...>
+  #   Recurly3::API.get 'accounts'             # => #<Net::HTTPOK ...>
+  #   Recurly3::API.post 'accounts', xml_body  # => #<Net::HTTPCreated ...>
+  #   Recurly3::API.put 'accounts/1', xml_body # => #<Net::HTTPOK ...>
+  #   Recurly3::API.delete 'accounts/1'        # => #<Net::HTTPNoContent ...>
   class API
-    require 'recurly2/api/errors'
+    require 'recurly3/api/errors'
     require 'openssl'
 
     @@base_uri = "https://api.recurly.com/v2/"
@@ -74,7 +74,7 @@ module Recurly2
 
       # @return [URI::Generic]
       def base_uri
-        URI.parse @@base_uri.sub('api', Recurly2.subdomain)
+        URI.parse @@base_uri.sub('api', Recurly3.subdomain)
       end
 
       def validate_uri!(uri)
@@ -88,7 +88,7 @@ module Recurly2
       def user_agent
         agent_string = "Recurly/#{Version}; #{RUBY_DESCRIPTION};"
 
-        if OpenSSL.const_defined?(:OPENSSL_VERSION)       
+        if OpenSSL.const_defined?(:OPENSSL_VERSION)
           "#{agent_string} #{OpenSSL::OPENSSL_VERSION}"
         elsif OpenSSL.const_defined?(:OPENSSL_LIBRARY_VERSION)
           "#{agent_string} #{OpenSSL::OPENSSL_LIBRARY_VERSION}"
@@ -107,4 +107,4 @@ module Recurly2
   end
 end
 
-require 'recurly2/api/net_http_adapter'
+require 'recurly3/api/net_http_adapter'

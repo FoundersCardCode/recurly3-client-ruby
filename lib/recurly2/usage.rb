@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   class Usage < Resource
     # @return [MeasuredUnit]
     belongs_to :measured_unit

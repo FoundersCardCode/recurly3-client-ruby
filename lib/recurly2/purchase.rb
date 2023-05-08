@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   # The Purchase object works in a slightly different way than the rest of the models.
   # You build up the purchase data into an object then pass to either:
   # {Purchase.invoice!} or {Purchase.preview!} and it will
@@ -6,13 +6,13 @@ module Recurly2
   #
   # You can build your purchase object with a new account or an existing account.
   # For an existing account, you just need an account_code:
-  #   Recurly2::Purchase.new({account: {account_code: 'myexistingaccount'}})
+  #   Recurly3::Purchase.new({account: {account_code: 'myexistingaccount'}})
   # or
-  #   account = Recurly2::Account.find('existing_account')
-  #   Recurly2::Purchase.new({account: account})
+  #   account = Recurly3::Account.find('existing_account')
+  #   Recurly3::Purchase.new({account: account})
   # or
-  #   account = Recurly2::Account.find('existing_account')
-  #   purchase = Recurly2::Purchase.new
+  #   account = Recurly3::Account.find('existing_account')
+  #   purchase = Recurly3::Purchase.new
   #   purchase.account = account
   #
   # For a new account, you can pass in {Account} data, {BillingInfo} data, etc
@@ -38,7 +38,7 @@ module Recurly2
   # @example
   #   require 'securerandom'
   #
-  #   purchase = Recurly2::Purchase.new(
+  #   purchase = Recurly3::Purchase.new(
   #     currency: 'USD',
   #     collection_method: :automatic,
   #     account: {
@@ -89,22 +89,22 @@ module Recurly2
   #   )
   #
   #   begin
-  #     preview_collection = Recurly2::Purchase.preview!(purchase)
+  #     preview_collection = Recurly3::Purchase.preview!(purchase)
   #     puts preview_collection.inspect
-  #   rescue Recurly2::Resource::Invalid => e
+  #   rescue Recurly3::Resource::Invalid => e
   #     # Invalid data
   #   end
   #
   #   begin
-  #     invoice_collection = Recurly2::Purchase.invoice!(purchase)
+  #     invoice_collection = Recurly3::Purchase.invoice!(purchase)
   #     puts invoice_collection.inspect
-  #   rescue Recurly2::Resource::Invalid => e
+  #   rescue Recurly3::Resource::Invalid => e
   #     # Invalid data
-  #   rescue Recurly2::Transaction::DeclinedError => e
+  #   rescue Recurly3::Transaction::DeclinedError => e
   #     # Display e.message and/or subscription (and associated) errors...
-  #   rescue Recurly2::Transaction::RetryableError => e
+  #   rescue Recurly3::Transaction::RetryableError => e
   #     # You should be able to attempt to save this again later.
-  #   rescue Recurly2::Transaction::Error => e
+  #   rescue Recurly3::Transaction::Error => e
   #     # Fallback transaction error
   #     # e.transaction
   #     # e.transaction_error_code

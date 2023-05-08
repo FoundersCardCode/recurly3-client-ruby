@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   # Recurly Documentation: https://dev.recurly.com/docs/list-account-notes
   class Note < Resource
     # @return [Account]

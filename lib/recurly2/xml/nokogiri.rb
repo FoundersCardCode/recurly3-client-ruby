@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   class XML
     module NokogiriAdapter
       def initialize xml

@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   # Invoices are created through account objects.
   #
   # Recurly Documentation: https://dev.recurly.com/docs/list-invoices
@@ -137,7 +137,7 @@ module Recurly2
     def mark_failed
       return false unless link? :mark_failed
       InvoiceCollection.from_response follow_link(:mark_failed)
-    rescue Recurly2::API::UnprocessableEntity => e
+    rescue Recurly3::API::UnprocessableEntity => e
       raise Invalid, e.message
     end
 
@@ -176,7 +176,7 @@ module Recurly2
     # @raise [Error] If the transaction fails.
     def enter_offline_payment(attrs={})
       Transaction.from_response API.post("#{uri}/transactions", attrs.empty? ? nil : Transaction.to_xml(attrs))
-    rescue Recurly2::API::UnprocessableEntity => e
+    rescue Recurly3::API::UnprocessableEntity => e
       raise Invalid, e.message
     end
 
@@ -233,7 +233,7 @@ module Recurly2
     # @return [true, false]
     # @raise [RuntimeError] Raises error if you attempt to create an invoice.
     # @example
-    #   invoice = Recurly2::Invoice.find('1000')
+    #   invoice = Recurly3::Invoice.find('1000')
     #   invoice.po_number = '1234'
     #   invoice.save # => true
     def save
@@ -246,7 +246,7 @@ module Recurly2
     private
 
     def initialize(attributes = {})
-      super({ :currency => Recurly2.default_currency }.merge attributes)
+      super({ :currency => Recurly3.default_currency }.merge attributes)
     end
 
     def refund_amount_to_xml(amount_in_cents = nil, refund_method = nil, options = {})

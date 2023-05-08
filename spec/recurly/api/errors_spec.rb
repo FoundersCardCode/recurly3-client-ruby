@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe Recurly2::API::ResponseError do
+describe Recurly3::API::ResponseError do
   describe "#xml" do
     let(:xml) { '<?xml version="1.0"?><root/>' }
 
     describe "when response not assigned" do
-      let(:error) { Recurly2::API::ResponseError.new nil, nil }
+      let(:error) { Recurly3::API::ResponseError.new nil, nil }
 
       it "must return nil" do
         error.send(:xml).must_equal nil
@@ -14,7 +14,7 @@ describe Recurly2::API::ResponseError do
 
     describe "when response assigned" do
       let(:response) { MiniTest::Mock.new }
-      let(:error) { Recurly2::API::ResponseError.new nil, response }
+      let(:error) { Recurly3::API::ResponseError.new nil, response }
 
       describe "when xml already cached" do
         before { error.instance_variable_set :@xml, xml }
@@ -43,8 +43,8 @@ describe Recurly2::API::ResponseError do
       describe "when response body is xml" do
         before {  3.times { response.expect :body, xml } }
 
-        it "must return instance of Recurly2::XML" do
-          error.send(:xml).must_be_instance_of Recurly2::XML
+        it "must return instance of Recurly3::XML" do
+          error.send(:xml).must_be_instance_of Recurly3::XML
         end
       end
 

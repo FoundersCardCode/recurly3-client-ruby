@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   # Represents an account's Billing Information. You normally want to use a token when creating billing information.
   #
   # Recurly Documentation: https://dev.recurly.com/docs/create-an-accounts-billing-info-token
@@ -76,7 +76,7 @@ module Recurly2
       #   API's base URI.
       # @param uuid [String]
       # @example
-      #   Recurly2::BillingInfo.member_path "code"
+      #   Recurly3::BillingInfo.member_path "code"
       #   # => "accounts/code/billing_info"
       def member_path uuid
         "accounts/#{uuid}/billing_info"

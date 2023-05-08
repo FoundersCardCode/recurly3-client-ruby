@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   class CreditPayment < Resource
     # @return [Account, nil]
     belongs_to :account, class_name: :Account, readonly: true

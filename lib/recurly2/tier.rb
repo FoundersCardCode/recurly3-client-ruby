@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   class Tier < Resource
 
     belongs_to :add_on

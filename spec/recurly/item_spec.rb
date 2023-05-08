@@ -29,7 +29,7 @@ describe Item do
       stub_api_request :get, 'items/plastic_gloves', 'items/show-200'
       stub_request(:put, "https://api.recurly.com/v2/items/plastic_gloves").
       with(:body => "<item><name>Sleek Plastic Gloves</name></item>",
-        :headers => Recurly2::API.headers).to_return(:status => 200, :body => "", :headers => {})
+        :headers => Recurly3::API.headers).to_return(:status => 200, :body => "", :headers => {})
       item.update_attributes({ name: 'Sleek Plastic Gloves' })
     end
   end
@@ -43,7 +43,7 @@ describe Item do
 
     it "should update custom fields" do
       stub_api_request :get, 'items/plastic_gloves', 'items/show-200'
-      
+
       item.custom_fields.each do |custom_field|
         custom_field.value="pink"
       end
@@ -66,7 +66,7 @@ describe Item do
     }
 
     it "must return true when deactivated account is reactivated" do
-      stub_api_request(:put, 'items/plastic_gloves/reactivate', 'items/show-200') 
+      stub_api_request(:put, 'items/plastic_gloves/reactivate', 'items/show-200')
       inactive.reactivate.must_equal true
     end
   end

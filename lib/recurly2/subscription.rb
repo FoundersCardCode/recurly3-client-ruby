@@ -1,6 +1,6 @@
-module Recurly2
+module Recurly3
   class Subscription < Resource
-    require 'recurly2/subscription/add_ons'
+    require 'recurly3/subscription/add_ons'
 
     # @macro [attach] scope
     #   @scope class
@@ -118,7 +118,7 @@ module Recurly2
 
     # @return [Subscription] A new subscription.
     def initialize(attributes = {})
-      super({ :currency => Recurly2.default_currency }.merge attributes)
+      super({ :currency => Recurly3.default_currency }.merge attributes)
     end
 
     # Assign a Plan resource (rather than a plan code).
@@ -176,7 +176,7 @@ module Recurly2
 
     # Convert free trial to paid subscription when transaction_type is "moto"
     # which stands for "Mail Order Telephone Order".
-    # 
+    #
     # @return true
     def convert_trial_moto()
       builder = XML.new("<subscription/>")
@@ -186,20 +186,20 @@ module Recurly2
     end
 
     # Convert free trial to paid subscription. Optionally uses a 3ds token.
-    # 
-    # @param three_d_secure_action_result_token_id [String] three_d_secure_action_result_token_id 
-    #   returned by Recurly2.js referencing the result of the 3DS authentication for PSD2
+    #
+    # @param three_d_secure_action_result_token_id [String] three_d_secure_action_result_token_id
+    #   returned by Recurly3.js referencing the result of the 3DS authentication for PSD2
     # @return true when payment is accepted
     def convert_trial(three_d_secure_action_result_token_id = nil)
       body = if three_d_secure_action_result_token_id != nil
-        builder = Recurly2::XML.new("<subscription/>")
+        builder = Recurly3::XML.new("<subscription/>")
         account = builder.add_element('account')
         billing_info = account.add_element('billing_info')
         billing_info.add_element('three_d_secure_action_result_token_id', three_d_secure_action_result_token_id)
         builder.to_s
       end
-      
-      reload API.put("#{uri}/convert_trial", body) 
+
+      reload API.put("#{uri}/convert_trial", body)
       true
     end
 

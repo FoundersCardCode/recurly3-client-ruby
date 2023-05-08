@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   # The AccountBalance object contains some information about the account's balance.
   # It exists to give us parity with the v1 API which used to include this information with
   # the {Account}. You can get an account's balance by calling {Account#account_balance} on an account instance.

@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   module Webhook
     # The CreditPayment class provides a generic interface
     # for credit-payment-related webhook notifications.

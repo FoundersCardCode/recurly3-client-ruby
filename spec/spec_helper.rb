@@ -15,7 +15,7 @@ module SpecHelper
 
   def get_raw_xml fixture
     xml = File.open(File.dirname(__FILE__) + "/fixtures/" + fixture, "rb") { |f| f.read }
-    return (Recurly2::XML.new xml).to_s
+    return (Recurly3::XML.new xml).to_s
   end
 
   def stub_api_request method, uri, fixture = nil
@@ -27,22 +27,22 @@ module SpecHelper
     end
     stub_request(method, uri.to_s)
       .with(
-        basic_auth: [CGI.escape(Recurly2.api_key), ''],
-        headers: Recurly2::API.headers
+        basic_auth: [CGI.escape(Recurly3.api_key), ''],
+        headers: Recurly3::API.headers
       )
       .to_return(response)
   end
 
   def reset_recurly_environment!
-    Recurly2.subdomain = 'api'
-    Recurly2.api_key = 'api_key'
-    Recurly2.default_currency = 'USD'
+    Recurly3.subdomain = 'api'
+    Recurly3.api_key = 'api_key'
+    Recurly3.default_currency = 'USD'
   end
 end
 
 class Minitest::Spec
   include SpecHelper
-  
+
   before do |tests|
     WebMock.reset!
     reset_recurly_environment!

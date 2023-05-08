@@ -1,6 +1,6 @@
 require 'cgi'
 
-module Recurly2
+module Recurly3
   class API
     # The superclass to all errors that occur when making an API request.
     class ResponseError < Error
@@ -47,7 +47,7 @@ module Recurly2
       def xml
         @xml ||= begin
           XML.new(response.body) if response and response.body and not response.body.empty?
-        rescue Recurly2::XML::ParseError
+        rescue Recurly3::XML::ParseError
           nil
         end
       end
@@ -169,7 +169,7 @@ module Recurly2
 
     # === 502 Gateway Error
     #
-    # The load balancer or web server had trouble connecting to the Recurly2.
+    # The load balancer or web server had trouble connecting to the Recurly3.
     # Please try the request again.
     class GatewayError < ServerError
     end

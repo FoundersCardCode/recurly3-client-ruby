@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   class XML
     ParseError = Class.new(StandardError)
 
@@ -24,7 +24,7 @@ module Recurly2
           # try to find a Resource class responsible for this element
           [el.name, type].each do |name|
             next unless name
-            if resource = Recurly2::Resource.find_resource_class(name)
+            if resource = Recurly3::Resource.find_resource_class(name)
               return resource.from_xml(el)
             end
           end
@@ -97,7 +97,7 @@ if defined? Nokogiri
   if RUBY_VERSION < "2.1.0"
     raise insecure_noko_msg
   else
-    require 'recurly2/xml/nokogiri'
+    require 'recurly3/xml/nokogiri'
     version = Gem::Version.new(Nokogiri::VERSION)
 
     if version.segments.length == 3
@@ -118,5 +118,5 @@ if defined? Nokogiri
     end
   end
 else
-  require 'recurly2/xml/rexml'
+  require 'recurly3/xml/rexml'
 end

@@ -1,18 +1,18 @@
-module Recurly2
+module Recurly3
   # Represents a collection of currencies (in cents).
   class Money
     # @return A money object representing multiple currencies (in cents).
     # @param currencies [Hash] A hash of currency codes and amounts.
     # @example
     #   # 12 United States dollars.
-    #   Recurly2::Money.new :USD => 12_00
+    #   Recurly3::Money.new :USD => 12_00
     #
     #   # $9.99 (or €6.99).
-    #   Recurly2::Money.new :USD => 9_99, :EUR => 6_99
+    #   Recurly3::Money.new :USD => 9_99, :EUR => 6_99
     #
     #   # Using a default currency.
-    #   Recurly2.default_currency = 'USD'
-    #   Recurly2::Money.new(49_00) # => #<Recurly2::Money USD: 49_00>
+    #   Recurly3.default_currency = 'USD'
+    #   Recurly3::Money.new(49_00) # => #<Recurly3::Money USD: 49_00>
     def initialize currencies = {}, parent = nil, attribute = nil
       @currencies = {}
       @parent = parent
@@ -20,11 +20,11 @@ module Recurly2
 
       if currencies.respond_to? :each_pair
         currencies.each_pair { |key, value| @currencies[key.to_s] = value }
-      elsif Recurly2.default_currency
-        self[Recurly2.default_currency] = currencies
+      elsif Recurly3.default_currency
+        self[Recurly3.default_currency] = currencies
       else
         message = 'expected a Hash'
-        message << ' or Numeric' if Recurly2.default_currency
+        message << ' or Numeric' if Recurly3.default_currency
         message << " but received #{currencies.class}"
         raise ArgumentError, message
       end
@@ -63,8 +63,8 @@ module Recurly2
     # @return [-1, 0, 1]
     # @param other [Money]
     # @example
-    #   [Recurly2::Money.new(2_00), Recurly2::Money.new(1_00)].sort
-    #   # => [#<Recurly2::Money USD: 1_00>, #<Recurly2::Money USD: 2_00>]
+    #   [Recurly3::Money.new(2_00), Recurly3::Money.new(1_00)].sort
+    #   # => [#<Recurly3::Money USD: 1_00>, #<Recurly3::Money USD: 2_00>]
     # @see Hash#<=>
     def <=> other
       if currencies.keys.length == 1 && other.currencies.length == 1
@@ -106,7 +106,7 @@ module Recurly2
     def method_missing name, *args, &block
       if currencies.respond_to? name
         return currencies.send name, *args, &block
-      elsif c = currencies[Recurly2.default_currency] and c.respond_to? name
+      elsif c = currencies[Recurly3.default_currency] and c.respond_to? name
         if currencies.keys.length > 1
           raise TypeError, "can't convert multicurrency into Integer"
         else

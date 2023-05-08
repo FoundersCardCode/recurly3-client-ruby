@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   class Item < Resource
     # @return [[CustomField], []]
     has_many :custom_fields, class_name: :CustomField, readonly: false

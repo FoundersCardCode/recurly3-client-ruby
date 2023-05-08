@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   class ShippingMethod < Resource
     define_attribute_methods %w(
       code

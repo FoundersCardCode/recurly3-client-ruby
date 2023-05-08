@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   module Webhook
     # The AccountNotification class provides a generic interface
     # for account-related webhook notifications.

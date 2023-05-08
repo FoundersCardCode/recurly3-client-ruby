@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   class Transaction < Resource
     # The base error class for transaction errors, raised when a transaction
     # fails.
@@ -14,19 +14,19 @@ module Recurly2
     # @example
     #   begin
     #     subscription.save!
-    #   rescue Recurly2::Resource::Invalid => e
+    #   rescue Recurly3::Resource::Invalid => e
     #     # Display e.record.errors...
-    #   rescue Recurly2::Transaction::DeclinedError => e
+    #   rescue Recurly3::Transaction::DeclinedError => e
     #     # Display e.message and/or subscription (and associated) errors...
-    #   rescue Recurly2::Transaction::RetryableError => e
+    #   rescue Recurly3::Transaction::RetryableError => e
     #     # You should be able to attempt to save this again later.
-    #   rescue Recurly2::Transaction::Error => e
+    #   rescue Recurly3::Transaction::Error => e
     #     # Alert yourself of the issue (i.e., log e.transaction).
     #     # Display a generic error message.
     #   end
     class Error < API::UnprocessableEntity
       # @return [Transaction] The transaction as returned (or updated) by
-      #   Recurly2.
+      #   Recurly3.
       attr_reader :transaction
 
       def initialize request, response, transaction

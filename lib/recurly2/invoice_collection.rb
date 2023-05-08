@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   class InvoiceCollection < Resource
     # @return [Invoice, nil]
     has_one :charge_invoice, class_name: :Invoice, readonly: true

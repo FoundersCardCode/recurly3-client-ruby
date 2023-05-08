@@ -1,6 +1,6 @@
 require 'rexml/document'
 
-module Recurly2
+module Recurly3
   class XML
     module REXMLAdapter
       def initialize xml

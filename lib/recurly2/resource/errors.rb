@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   class Resource
     class Errors < Hash
       def [] key

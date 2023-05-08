@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   class Subscription < Resource
     class AddOns
       instance_methods.each do |method|

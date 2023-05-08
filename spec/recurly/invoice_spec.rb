@@ -7,7 +7,7 @@ describe Invoice do
       stub_api_request :get, 'subscriptions/abcdef1234567890', 'subscriptions/show-200'
 
       invoice = Invoice.find 'created-invoice'
-      invoice.subscriptions.must_be_instance_of Recurly2::Resource::Pager
+      invoice.subscriptions.must_be_instance_of Recurly3::Resource::Pager
     end
 
     it "subscription is nil if not present" do
@@ -100,7 +100,7 @@ describe Invoice do
       it "creates a refund invoice for the line items refunded" do
         refund_invoice = @invoice.refund @line_items
         refund_invoice.must_be_instance_of Invoice
-        refund_invoice.original_invoices.must_be_instance_of Recurly2::Resource::Pager
+        refund_invoice.original_invoices.must_be_instance_of Recurly3::Resource::Pager
         refund_invoice.line_items.each do |key, adjustment|
           adjustment.quantity_remaining.must_equal 1
         end
@@ -136,7 +136,7 @@ describe Invoice do
       it "creates a refund invoice for the line items refunded" do
         refund_invoice = @invoice.refund_amount 1000
         refund_invoice.must_be_instance_of Invoice
-        refund_invoice.original_invoices.must_be_instance_of Recurly2::Resource::Pager
+        refund_invoice.original_invoices.must_be_instance_of Recurly3::Resource::Pager
         refund_invoice.amount_remaining_in_cents.must_equal 100
       end
     end
@@ -174,7 +174,7 @@ describe Invoice do
       invoice = Invoice.find(1000)
       invoice.force_collect(
         transaction_type: 'moto',
-        billing_info: Recurly2::BillingInfo.new(token_id: '1234')
+        billing_info: Recurly3::BillingInfo.new(token_id: '1234')
       )
     end
   end
@@ -204,15 +204,15 @@ describe Invoice do
       invoice.save()
 
       invoice.address.must_be_instance_of Address
-      invoice.address.first_name.must_equal "P." 
-      invoice.address.last_name.must_equal "Sherman" 
-      invoice.address.company.must_equal "Dentist Office" 
-      invoice.address.address1.must_equal "42 Wallaby Way" 
-      invoice.address.address2.must_equal "Suite 200" 
-      invoice.address.city.must_equal "Sydney" 
-      invoice.address.state.must_equal "New South Wales" 
-      invoice.address.country.must_equal "Australia" 
-      invoice.address.zip.must_equal "2060" 
+      invoice.address.first_name.must_equal "P."
+      invoice.address.last_name.must_equal "Sherman"
+      invoice.address.company.must_equal "Dentist Office"
+      invoice.address.address1.must_equal "42 Wallaby Way"
+      invoice.address.address2.must_equal "Suite 200"
+      invoice.address.city.must_equal "Sydney"
+      invoice.address.state.must_equal "New South Wales"
+      invoice.address.country.must_equal "Australia"
+      invoice.address.zip.must_equal "2060"
       invoice.po_number.must_equal "9876"
       invoice.terms_and_conditions.must_equal "Dentist not responsible for broken teeth."
       invoice.customer_notes.must_equal "Oh, well, that's one way to pull a tooth out!"

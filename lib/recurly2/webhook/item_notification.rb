@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   module Webhook
     class ItemNotification < Notification
       has_one :item

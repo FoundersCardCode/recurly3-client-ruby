@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   # Measured Units are used in Recurly's usage-based billing feature.
   #
   # Recurly Documentation: https://dev.recurly.com/docs/measured-unit-object

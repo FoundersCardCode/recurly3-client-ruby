@@ -1,6 +1,6 @@
-module Recurly2
+module Recurly3
   class Transaction < Resource
-    require 'recurly2/transaction/errors'
+    require 'recurly3/transaction/errors'
 
     # @macro [attach] scope
     #   @scope class
@@ -84,17 +84,17 @@ module Recurly2
 
     # @see Resource#initialize
     def initialize(attributes = {})
-      super({ :currency => Recurly2.default_currency }.merge attributes)
+      super({ :currency => Recurly3.default_currency }.merge attributes)
     end
 
     # Saves new records only.
     #
     # @return [true, false]
-    # @raise [Recurly2::Error] For persisted transactions.
+    # @raise [Recurly3::Error] For persisted transactions.
     # @see Resource#save
     def save
       return super if new_record?
-      raise Recurly2::Error, "#{self.class.collection_name} cannot be updated"
+      raise Recurly3::Error, "#{self.class.collection_name} cannot be updated"
     end
 
     # Refunds the transaction.

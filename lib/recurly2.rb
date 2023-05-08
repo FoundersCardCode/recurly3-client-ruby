@@ -1,46 +1,46 @@
 # Recurly is a Ruby client for Recurly's REST API.
-module Recurly2
-  require 'recurly2/error'
-  require 'recurly2/helper'
-  require 'recurly2/api'
-  require 'recurly2/resource'
-  require 'recurly2/shipping_address'
-  require 'recurly2/billing_info'
-  require 'recurly2/custom_field'
-  require 'recurly2/account_acquisition'
-  require 'recurly2/account'
-  require 'recurly2/account_balance'
-  require 'recurly2/add_on'
-  require 'recurly2/address'
-  require 'recurly2/tax_detail'
-  require 'recurly2/tax_type'
-  require 'recurly2/juris_detail'
-  require 'recurly2/adjustment'
-  require 'recurly2/coupon'
-  require 'recurly2/credit_payment'
-  require 'recurly2/helper'
-  require 'recurly2/invoice'
-  require 'recurly2/invoice_collection'
-  require 'recurly2/item'
-  require 'recurly2/js'
-  require 'recurly2/money'
-  require 'recurly2/measured_unit'
-  require 'recurly2/note'
-  require 'recurly2/plan'
-  require 'recurly2/redemption'
-  require 'recurly2/shipping_fee'
-  require 'recurly2/shipping_method'
-  require 'recurly2/subscription'
-  require 'recurly2/subscription_add_on'
-  require 'recurly2/transaction'
-  require 'recurly2/usage'
-  require 'recurly2/version'
-  require 'recurly2/xml'
-  require 'recurly2/delivery'
-  require 'recurly2/gift_card'
-  require 'recurly2/purchase'
-  require 'recurly2/webhook'
-  require 'recurly2/tier'
+module Recurly3
+  require 'recurly3/error'
+  require 'recurly3/helper'
+  require 'recurly3/api'
+  require 'recurly3/resource'
+  require 'recurly3/shipping_address'
+  require 'recurly3/billing_info'
+  require 'recurly3/custom_field'
+  require 'recurly3/account_acquisition'
+  require 'recurly3/account'
+  require 'recurly3/account_balance'
+  require 'recurly3/add_on'
+  require 'recurly3/address'
+  require 'recurly3/tax_detail'
+  require 'recurly3/tax_type'
+  require 'recurly3/juris_detail'
+  require 'recurly3/adjustment'
+  require 'recurly3/coupon'
+  require 'recurly3/credit_payment'
+  require 'recurly3/helper'
+  require 'recurly3/invoice'
+  require 'recurly3/invoice_collection'
+  require 'recurly3/item'
+  require 'recurly3/js'
+  require 'recurly3/money'
+  require 'recurly3/measured_unit'
+  require 'recurly3/note'
+  require 'recurly3/plan'
+  require 'recurly3/redemption'
+  require 'recurly3/shipping_fee'
+  require 'recurly3/shipping_method'
+  require 'recurly3/subscription'
+  require 'recurly3/subscription_add_on'
+  require 'recurly3/transaction'
+  require 'recurly3/usage'
+  require 'recurly3/version'
+  require 'recurly3/xml'
+  require 'recurly3/delivery'
+  require 'recurly3/gift_card'
+  require 'recurly3/purchase'
+  require 'recurly3/webhook'
+  require 'recurly3/tier'
 
   @subdomain = nil
 
@@ -54,13 +54,13 @@ module Recurly2
     # Call this method with out any arguments to have it unset the thread context config values.
     # @param config_params - Hash with the following keys: subdomain, api_key, default_currency
     def config(config_params = nil)
-      Thread.current[:recurly2_config] = config_params
+      Thread.current[:recurly3_config] = config_params
     end
 
     # @return [String] A subdomain.
     def subdomain
-      if Thread.current[:recurly2_config] && Thread.current[:recurly2_config][:subdomain]
-        return Thread.current[:recurly2_config][:subdomain]
+      if Thread.current[:recurly3_config] && Thread.current[:recurly3_config][:subdomain]
+        return Thread.current[:recurly3_config][:subdomain]
       end
       @subdomain || 'api'
     end
@@ -69,20 +69,20 @@ module Recurly2
     # @return [String] An API key.
     # @raise [ConfigurationError] If not configured.
     def api_key
-      if Thread.current[:recurly2_config] && Thread.current[:recurly2_config][:api_key]
-        return Thread.current[:recurly2_config][:api_key]
+      if Thread.current[:recurly3_config] && Thread.current[:recurly3_config][:api_key]
+        return Thread.current[:recurly3_config][:api_key]
       end
 
       defined? @api_key and @api_key or raise(
-        ConfigurationError, "Recurly2.api_key not configured"
+        ConfigurationError, "Recurly3.api_key not configured"
       )
     end
     attr_writer :api_key
 
     # @return [String, nil] A default currency.
     def default_currency
-      if Thread.current[:recurly2_config] &&  Thread.current[:recurly2_config][:default_currency]
-        return Thread.current[:recurly2_config][:default_currency]
+      if Thread.current[:recurly3_config] &&  Thread.current[:recurly3_config][:default_currency]
+        return Thread.current[:recurly3_config][:default_currency]
       end
 
       return  @default_currency if defined? @default_currency
@@ -90,7 +90,7 @@ module Recurly2
     end
     attr_writer :default_currency
 
-    # @return [JS] The Recurly2.js module.
+    # @return [JS] The Recurly3.js module.
     def js
       JS
     end
@@ -102,11 +102,11 @@ module Recurly2
     # @return [Logger, nil]
     # @example
     #   require 'logger'
-    #   Recurly2.logger = Logger.new STDOUT
+    #   Recurly3.logger = Logger.new STDOUT
     # @example Rails applications automatically log to the Rails log:
-    #   Recurly2.logger = Rails.logger
+    #   Recurly3.logger = Rails.logger
     # @example Turn off logging entirely:
-    #   Recurly2.logger = nil # Or Recurly2.logger = Logger.new nil
+    #   Recurly3.logger = nil # Or Recurly3.logger = Logger.new nil
     attr_accessor :logger
 
     def logger=(logger)

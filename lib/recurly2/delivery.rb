@@ -1,4 +1,4 @@
-module Recurly2
+module Recurly3
   # Delivery objects are only used with GiftCards.
   #
   # Recurly Documentation: https://dev.recurly.com/docs/gift-card-object

@@ -1,21 +1,21 @@
-module Recurly2
+module Recurly3
   # The Webhook class handles delegating the webhook request body to the appropriate
   # notification class. Notification classes enapsualte the supplied data, providing
   # access to account details, as well as subscription, invoice, and transaction
   # details where available.
   #
   # @example
-  #   Recurly2::Webhook.parse(xml_body)  # => #<Recurly2::Webhook::NewAccountNotification ...>
+  #   Recurly3::Webhook.parse(xml_body)  # => #<Recurly3::Webhook::NewAccountNotification ...>
   #
-  #   notification = Recurly2::Webhook.parse(xml_body)
+  #   notification = Recurly3::Webhook.parse(xml_body)
   #   case notification
-  #   when Recurly2::Webhook::NewAccountNoficiation
+  #   when Recurly3::Webhook::NewAccountNoficiation
   #     # A new account was created
   #     ...
-  #   when Recurly2::Webhook::NewSubscriptionNotification
+  #   when Recurly3::Webhook::NewSubscriptionNotification
   #     # A new subscription was added
   #     ...
-  #   when Recurly2::Webhook::SubscriptionNotification
+  #   when Recurly3::Webhook::SubscriptionNotification
   #     # A subscription-related notification was sent
   #     ...
   #   end

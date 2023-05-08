@@ -1,7 +1,7 @@
-module Recurly2
+module Recurly3
   module JS
     class << self
-      # @return [String] A public key for Recurly2.js.
+      # @return [String] A public key for Recurly3.js.
       # @raise [ConfigurationError] No public key has been set.
       def public_key
         defined? @public_key and @public_key or raise(

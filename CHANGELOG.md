@@ -156,12 +156,12 @@ This brings us up to API version 2.15. There are no breaking changes.
 <a name="v2.17.0"></a>
 ## v2.17.0 (2018-09-20)
 
-- Remove Recurly2.js v2 code and some other small improvements [PR](https://github.com/recurly/recurly-client-ruby/pull/411)
+- Remove Recurly3.js v2 code and some other small improvements [PR](https://github.com/recurly/recurly-client-ruby/pull/411)
 - Adds missing credit memo opts to invoice refunds [PR](https://github.com/recurly/recurly-client-ruby/pull/415)
 
 ### Upgrade Notes
 
-This release contains one breaking change. Older Recurly2.js token signing is no longer supported. You should upgrade to version 4 of Recurly2.js: https://dev.recurly.com/docs/recurlyjs
+This release contains one breaking change. Older Recurly3.js token signing is no longer supported. You should upgrade to version 4 of Recurly3.js: https://dev.recurly.com/docs/recurlyjs
 The `js` module is still around to support storing the `public_key`.
 
 <a name="v2.16.2"></a>
@@ -237,12 +237,12 @@ an `InvoiceCollection`.
 
 ```ruby
 # Change This
-Recurly2::Invoice.find_each(50) do |invoice|
+Recurly3::Invoice.find_each(50) do |invoice|
   puts invoice
 end
 
 # To This
-Recurly2::Invoice.find_each(per_page: 50) do |invoice|
+Recurly3::Invoice.find_each(per_page: 50) do |invoice|
   puts invoice
 end
 ```
@@ -261,7 +261,7 @@ end
 `mark_failed` no longer reloads the invoice with the response returning true or false, it returns either an `InvoiceCollection` if failable and request is successful, it returns `false` if invoice cannot be marked failed. To keep functionality, take the `charge_invoice` of the returned collection:
 
 ```ruby
-invoice = Recurly2::Invoice.find('1001')
+invoice = Recurly3::Invoice.find('1001')
 
 failed_collection = invoice.mark_failed
 if failed_collection
@@ -411,7 +411,7 @@ All `country` fields must now contain valid [2 letter ISO 3166 country codes](ht
 The purchases endpoint can create and invoice multiple adjustments at once but our invoices can only contain items in one currency. To make this explicit the currency can no longer be provided on an adjustment, it must be set once for the entire purchase:
 
 ```ruby
-purchase = Recurly2::Purchase.new(
+purchase = Recurly3::Purchase.new(
   # The purchase object is the only place you can set the currency:
   currency: 'USD',
   account: {
@@ -742,7 +742,7 @@ This release has API breaking changes around coupon redemptions. See [PR](https:
 <a name="v2.3.7"></a>
 ## v2.3.7 (2014-12-8)
 
-* Add 'public_key' property to Recurly2.js [1ad6aa0](https://github.com/recurly/recurly-client-ruby/pull/155)
+* Add 'public_key' property to Recurly3.js [1ad6aa0](https://github.com/recurly/recurly-client-ruby/pull/155)
 * Adds support for reading and writing custom invoice notes [PR](https://github.com/recurly/recurly-client-ruby/pull/158)
 * Add `Plan#tax_code`, `AddOn#tax_code` and `Adjustment#tax_code` [PR](https://github.com/recurly/recurly-client-ruby/pull/160)
 
@@ -789,7 +789,7 @@ This release has API breaking changes around coupon redemptions. See [PR](https:
 
 #### Features
 
-* Added subscription preview: `Recurly2::Subscription.preview` [0d55115](https://github.com/recurly/recurly-client-ruby/commit/0d55115b6155b6a2fb36bfbfcf0cd797f861841e)
+* Added subscription preview: `Recurly3::Subscription.preview` [0d55115](https://github.com/recurly/recurly-client-ruby/commit/0d55115b6155b6a2fb36bfbfcf0cd797f861841e)
 * Added tax details to adjustments: `adjustment.tax_details` [c672258](https://github.com/recurly/recurly-client-ruby/commit/c6722589a6174fd2c791d4393522508ec4223694)
 * Removed `taxable` support on adjustments [b542b8a](https://github.com/recurly/recurly-client-ruby/commit/b542b8a16616ba7d4cc1da22200ea3eb7ba426b0)
 * Added `tax_exempt` to accounts, adjustments and plans [b542b8a](https://github.com/recurly/recurly-client-ruby/commit/b542b8a16616ba7d4cc1da22200ea3eb7ba426b0)
@@ -839,7 +839,7 @@ This release has API breaking changes around coupon redemptions. See [PR](https:
 
 #### Bug Fixes
 
-* Raise `Recurly2::Error` for all internal HTTP errors ([f3c473a](https://github.com/recurly/recurly-client-ruby/commit/f3c473aa290867ae5eb35eec5b2741b19d1548e5))
+* Raise `Recurly3::Error` for all internal HTTP errors ([f3c473a](https://github.com/recurly/recurly-client-ruby/commit/f3c473aa290867ae5eb35eec5b2741b19d1548e5))
 * Correctly serialize all API links for a resource so that they are not lost on cache marshalling ([c8ae2d5](https://github.com/recurly/recurly-client-ruby/commit/c8ae2d5e5a283cd1cb86536345b22b536f5ff619))
 
 #### Features

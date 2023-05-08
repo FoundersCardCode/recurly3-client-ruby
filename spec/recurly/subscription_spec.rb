@@ -325,7 +325,7 @@ describe Subscription do
     end
 
     it "should be able to pause and resume a subscription" do
-      sub = Recurly2::Subscription.find('abcdef1234567890')
+      sub = Recurly3::Subscription.find('abcdef1234567890')
       sub.paused_at.must_equal nil
       sub.pause(1).must_equal true
       sub.paused_at.must_be_instance_of DateTime
@@ -340,20 +340,20 @@ describe Subscription do
       stub_api_request :get, 'subscriptions/abcdef1234567890', 'subscriptions/show-200-trial'
       stub_api_request :put, 'https://api.recurly.com/v2/subscriptions/abcdef1234567890/convert_trial', 'subscriptions/convert-trial-200'
     end
-    
+
     it "should convert trial to paid subscription is valid 3ds token is provided" do
-      sub = Recurly2::Subscription.find('abcdef1234567890')
+      sub = Recurly3::Subscription.find('abcdef1234567890')
       sub.convert_trial("token").must_equal true
       sub.trial_ends_at.must_equal sub.current_period_started_at
     end
 
     it "should convert trial with billing info but without valid 3ds token" do
-      sub = Recurly2::Subscription.find('abcdef1234567890')
+      sub = Recurly3::Subscription.find('abcdef1234567890')
       sub.convert_trial().must_equal true
     end
 
     it "should convert trial to paid subscription when transaction_type is moto" do
-      sub = Recurly2::Subscription.find('abcdef1234567890')
+      sub = Recurly3::Subscription.find('abcdef1234567890')
       sub.convert_trial_moto().must_equal true
       sub.trial_ends_at.must_equal sub.current_period_started_at
     end
@@ -405,7 +405,7 @@ describe Subscription do
 
         stub_request(:put, "https://api.recurly.com/v2/subscriptions/abcdef1234567890").
           with(:body => "<subscription><plan_code>abc</plan_code><quantity>1</quantity><unit_amount_in_cents>1500</unit_amount_in_cents></subscription>",
-               :headers => Recurly2::API.headers).
+               :headers => Recurly3::API.headers).
           to_return(:status => 200, :body => "", :headers => {})
 
         subscription.update_attributes({ plan_code: 'abc', quantity: 1, unit_amount_in_cents: 1500 })
@@ -422,7 +422,7 @@ describe Subscription do
 
         stub_request(:put, "https://api.recurly.com/v2/subscriptions/abcdef1234567890").
           with(:body => "<subscription><plan_code>plan_code</plan_code><unit_amount_in_cents>1500</unit_amount_in_cents></subscription>",
-               :headers => Recurly2::API.headers).
+               :headers => Recurly3::API.headers).
           to_return(:status => 200, :body => "", :headers => {})
 
         subscription.update_attributes({ plan_code: 'plan_code', quantity: 1, unit_amount_in_cents: 1500 })
@@ -442,9 +442,9 @@ describe Subscription do
         'subscriptions/abcdef1234567890/shipping_address',
         'shipping_addresses/show-200'
       )
-      subscription = Recurly2::Subscription.find("abcdef1234567890")
+      subscription = Recurly3::Subscription.find("abcdef1234567890")
       shad = subscription.shipping_address
-      shad.must_be_instance_of Recurly2::ShippingAddress
+      shad.must_be_instance_of Recurly3::ShippingAddress
     end
   end
 end
